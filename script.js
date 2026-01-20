@@ -4,12 +4,18 @@ let aboutAside = document.querySelector("#about");
 let pacbiLink = document.querySelector("#pacbi-link");
 let pacbiAside = document.querySelector("#pacbi");
 
-let closeButtons = document.querySelectorAll(".close")
+let aboutClose = document.querySelector("#about .close")
+let pacbiClose = document.querySelector("#pacbi .close")
+
+let clickTracker = 0;
 
 
 function showAside(aside) {
-    aside.classList.toggle("show");
-    aside.style.zIndex = `1000`;
+    aside.classList.add("show");
+    clickTracker++
+    aside.style.zIndex = `${clickTracker}`;
+
+    console.log(clickTracker);
 }
 
 aboutLink.addEventListener("click", () => {
@@ -20,9 +26,19 @@ pacbiLink.addEventListener("click", () => {
     showAside(pacbiAside)
 })
 
-// closeButtons.forEach((close) => {
-//     function closeAside(aside) {
-//         aside.classList.add("hide");
-//     }
-// })
+function closeAside(aside) {
+    if(aside.classList.contains("show")) {
+        aside.classList.add("hide");
+        aside.classList.remove("show");
+    } 
+}
+
+aboutClose.addEventListener("click", () => {
+    closeAside(aboutAside)
+    console.log('hi')
+})
+
+pacbiClose.addEventListener("click", () => {
+    closeAside(pacbiAside)
+})
 
